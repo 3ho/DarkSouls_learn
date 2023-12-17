@@ -1,0 +1,20 @@
+#指定文件 或 目录
+/Library
+/Logs
+/.vs
+/Temp
+/.idea
+/obj
+/UserSettings/
+.vsconfig
+
+/*.csproj
+/*.sln
+/Assets/hero_log.txt*
+/ProjectSettings/ProjectVersion.txt
+
+
+# 配置生成，忽略meta文件
+/Assets/Tools/cfg/*.meta
+/Assets/config/cfg/*.meta
+/Assets/StreamingAssets/cfg/*.meta
