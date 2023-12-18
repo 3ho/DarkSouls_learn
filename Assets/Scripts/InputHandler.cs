@@ -11,18 +11,25 @@ public class InputHandler : MonoBehaviour
     public float mouseY;
 
     PlayerControls inputActions;
+    CameraHander cameraHander;
+
     Vector2 movementInput;
+    Vector2 cameraInput;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-
+        cameraHander = CameraHander.singleton;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
+        float delta = Time.deltaTime;
 
+        if (cameraHander != null)
+        {
+            cameraHander.FollowTarget(delta);
+            cameraHander.HandCameraRotation(delta, mouseX, mouseY);
+        }
     }
 
     private void OnEnable()
@@ -31,6 +38,7 @@ public class InputHandler : MonoBehaviour
         {
             inputActions = new PlayerControls();
             inputActions.PlayerMovement.MovementAction.performed += outputActions => movementInput = outputActions.ReadValue<Vector2>();
+            inputActions.PlayerMovement.Camera.performed += outputActions => cameraInput = outputActions.ReadValue<Vector2>();
         }
         inputActions.Enable();
     }
@@ -50,5 +58,8 @@ public class InputHandler : MonoBehaviour
         horizontal = movementInput.x;
         vertical = movementInput.y;
         moveAmount = Mathf.Clamp01(Mathf.Abs(horizontal) + Mathf.Abs(vertical));
+
+        mouseX = cameraInput.x;
+        mouseY = cameraInput.y;
     }
 }
