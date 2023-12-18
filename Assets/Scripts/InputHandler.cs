@@ -19,6 +19,7 @@ public class InputHandler : MonoBehaviour
     private void Awake()
     {
         cameraHander = CameraHander.singleton;
+        //cameraHander = FindObjectOfType<CameraHander>();
     }
 
     private void FixedUpdate()

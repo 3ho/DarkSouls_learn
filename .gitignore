@@ -11,7 +11,6 @@
 /*.csproj
 /*.sln
 /Assets/hero_log.txt*
-/ProjectSettings/ProjectVersion.txt
 
 
 # 配置生成，忽略meta文件
