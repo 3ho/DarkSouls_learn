@@ -20,7 +20,11 @@ public class PlayerLocomotion : MonoBehaviour
     [SerializeField]
     float movementSpeed = 5;
     [SerializeField]
+    float sprintSpeed = 7;
+    [SerializeField]
     float rotationSpeed = 10;
+
+    public bool isSprinting;
 
     // Start is called before the first frame update
     void Start()
@@ -72,12 +76,21 @@ public class PlayerLocomotion : MonoBehaviour
         moveDirection.y = 0;
 
         float speed = movementSpeed;
+        if(inputHandler.sprintFlag)
+        {
+            speed = sprintSpeed;
+            isSprinting = true;
+        }
+        else
+        {
+            isSprinting = false;
+        }
         moveDirection *= speed;
 
         Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, new Vector3(0, 0, 0));
         rigidbody.velocity = projectedVelocity;
 
-        animatorHandler.UpdateAnimatorValues(inputHandler.moveAmount, 0);
+        animatorHandler.UpdateAnimatorValues(inputHandler.moveAmount, 0, isSprinting);
 
         if (animatorHandler.canRotate)
         {
@@ -92,7 +105,6 @@ public class PlayerLocomotion : MonoBehaviour
 
         if(inputHandler.rollFlag)
         {
-            inputHandler.rollFlag = false;
             moveDirection = cameraObject.forward * inputHandler.vertical;
             moveDirection += cameraObject.right * inputHandler.horizontal;
 

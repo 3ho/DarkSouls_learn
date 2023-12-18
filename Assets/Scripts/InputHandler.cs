@@ -12,6 +12,8 @@ public class InputHandler : MonoBehaviour
 
     public bool b_Input;
     public bool rollFlag;
+    public bool sprintFlag;
+    public float rollInputTimer;
     public bool isInteracting;
 
     PlayerControls inputActions;
@@ -44,11 +46,6 @@ public class InputHandler : MonoBehaviour
             inputActions = new PlayerControls();
             inputActions.PlayerMovement.MovementAction.performed += outputActions => movementInput = outputActions.ReadValue<Vector2>();
             inputActions.PlayerMovement.Camera.performed += outputActions => cameraInput = outputActions.ReadValue<Vector2>();
-
-            //xiaorenping自增
-            #region 
-            inputActions.PlayerActions.Roll.started += outputActions => rollFlag = true;
-            #endregion
         }
         inputActions.Enable();
     }
@@ -76,11 +73,22 @@ public class InputHandler : MonoBehaviour
 
     private void HandleRollInput(float delta)
     {
-        b_Input = inputActions.PlayerActions.Roll.phase == UnityEngine.InputSystem.InputActionPhase.Started;
+        b_Input = inputActions.PlayerActions.Roll.IsPressed();
 
         if (b_Input)
         {
-            rollFlag = true;
+            rollInputTimer += delta;
+            sprintFlag = true;
+        }
+        else
+        {
+            if(rollInputTimer > 0 && rollInputTimer < 0.5f)
+            {
+                sprintFlag = false;
+                rollFlag = true;
+            }
+
+            rollInputTimer = 0;
         }
     }
 }
