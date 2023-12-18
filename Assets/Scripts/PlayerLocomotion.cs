@@ -7,7 +7,7 @@ public class PlayerLocomotion : MonoBehaviour
     InputHandler inputHandler;
     Vector3 moveDirection;
 
-    new Rigidbody rigidbody;
+    public new Rigidbody rigidbody;
     Vector2 movementInput;
     Transform cameraObject;
 
@@ -92,6 +92,7 @@ public class PlayerLocomotion : MonoBehaviour
 
         if(inputHandler.rollFlag)
         {
+            inputHandler.rollFlag = false;
             moveDirection = cameraObject.forward * inputHandler.vertical;
             moveDirection += cameraObject.right * inputHandler.horizontal;
 

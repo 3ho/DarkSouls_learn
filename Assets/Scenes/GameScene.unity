@@ -7115,6 +7115,7 @@ GameObject:
   - component: {fileID: 225341067}
   - component: {fileID: 225341066}
   - component: {fileID: 225341065}
+  - component: {fileID: 225341070}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -7139,6 +7140,9 @@ MonoBehaviour:
   moveAmount: 0
   mouseX: 0
   mouseY: 0
+  b_Input: 0
+  rollFlag: 0
+  isInteracting: 0
 --- !u!114 &225341066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7151,6 +7155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4fe0afceafcd444d8a5c51eccd9ff71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rigidbody: {fileID: 0}
   myTransform: {fileID: 0}
   animatorHandler: {fileID: 0}
   movementSpeed: 5
@@ -7200,6 +7205,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &225341070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 225341064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b376deac2f1591b439ff45aa4e8e0cdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &229526385
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27735,6 +27752,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
+  inputHandler: {fileID: 0}
+  playerLocomotion: {fileID: 0}
   canRotate: 1
 --- !u!1001 &1047041902
 PrefabInstance:

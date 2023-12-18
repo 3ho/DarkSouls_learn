@@ -12,6 +12,7 @@ public class InputHandler : MonoBehaviour
 
     public bool b_Input;
     public bool rollFlag;
+    public bool isInteracting;
 
     PlayerControls inputActions;
     CameraHander cameraHander;
