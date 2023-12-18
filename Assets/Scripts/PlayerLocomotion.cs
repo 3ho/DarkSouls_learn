@@ -15,6 +15,8 @@ public class PlayerLocomotion : MonoBehaviour
     public Transform myTransform;
     [HideInInspector]
     public AnimatorHandler animatorHandler;
+    [HideInInspector]
+    public PlayerManager playerManager;
 
     [Header("Stats")]
     [SerializeField]
@@ -24,7 +26,6 @@ public class PlayerLocomotion : MonoBehaviour
     [SerializeField]
     float rotationSpeed = 10;
 
-    public bool isSprinting;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +33,7 @@ public class PlayerLocomotion : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         inputHandler = GetComponent<InputHandler>();
         animatorHandler = GetComponentInChildren<AnimatorHandler>();
+        playerManager = GetComponent<PlayerManager>();
         cameraObject = Camera.main.transform;
         myTransform = transform;
 
@@ -41,12 +43,7 @@ public class PlayerLocomotion : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float delta = Time.deltaTime;
-
-        inputHandler.TickInput(delta);
-        HandleMovement(delta);
-
-        HandleRollingAndSprinting(delta);
+        
     }
 
 
@@ -79,18 +76,18 @@ public class PlayerLocomotion : MonoBehaviour
         if(inputHandler.sprintFlag)
         {
             speed = sprintSpeed;
-            isSprinting = true;
+            playerManager.isSprinting = true;
         }
         else
         {
-            isSprinting = false;
+            playerManager.isSprinting = false;
         }
         moveDirection *= speed;
 
         Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, new Vector3(0, 0, 0));
         rigidbody.velocity = projectedVelocity;
 
-        animatorHandler.UpdateAnimatorValues(inputHandler.moveAmount, 0, isSprinting);
+        animatorHandler.UpdateAnimatorValues(inputHandler.moveAmount, 0, playerManager.isSprinting);
 
         if (animatorHandler.canRotate)
         {
