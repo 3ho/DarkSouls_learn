@@ -13,6 +13,8 @@ public class PlayerLocomotion : MonoBehaviour
 
     [HideInInspector]
     public Transform myTransform;
+    [HideInInspector]
+    public AnimatorHandler animatorHandler;
 
     [Header("Stats")]
     [SerializeField]
@@ -25,8 +27,11 @@ public class PlayerLocomotion : MonoBehaviour
     {
         rigidbody = GetComponent<Rigidbody>();
         inputHandler = GetComponent<InputHandler>();
+        animatorHandler = GetComponentInChildren<AnimatorHandler>();
         cameraObject = Camera.main.transform;
         myTransform = transform;
+
+        animatorHandler.Initialzie();
     }
 
     // Update is called once per frame
@@ -42,11 +47,15 @@ public class PlayerLocomotion : MonoBehaviour
         float speed = movementSpeed;
         moveDirection *= speed;
 
-        //moveDirection.y = 0;
         Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, new Vector3(0, 0, 0));
         rigidbody.velocity = projectedVelocity;
 
-        HandleRotation(delta);
+        animatorHandler.UpdateAnimatorValues(inputHandler.moveAmount, 0);
+
+        if (animatorHandler.canRotate)
+        {
+            HandleRotation(delta);
+        }
     }
 
 

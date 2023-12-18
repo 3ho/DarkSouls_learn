@@ -296,6 +296,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 17.949001, y: 0, z: 0}
+--- !u!1 &1347803232 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1672869815182380, guid: 45d9dcc10d3f1874f9027cf792a3428c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1583858629}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1347803234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1347803232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84b644acf58445543a0bb6fe3d294ae3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 0}
+  canRotate: 1
 --- !u!1 &1370137941
 GameObject:
   m_ObjectHideFlags: 0
@@ -429,8 +449,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myTransform: {fileID: 0}
+  animatorHandler: {fileID: 0}
   movementSpeed: 5
-  rotationSpeed: 1
+  rotationSpeed: 10
 --- !u!136 &1532439984
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -548,5 +569,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 95492657247768428, guid: 45d9dcc10d3f1874f9027cf792a3428c,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 565e0e32fd175d04183a3e8b39c793a3, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45d9dcc10d3f1874f9027cf792a3428c, type: 3}
