@@ -35,6 +35,8 @@ public class CameraHander : MonoBehaviour
         myTransform = transform;
         defaultPosition = cameraTransform.localPosition.z;
         ignoreLayers = ~2;
+
+        targetTransform = FindObjectOfType<PlayerLocomotion>().transform;
     }
 
     public void FollowTarget(float delta)
@@ -79,7 +81,6 @@ public class CameraHander : MonoBehaviour
         {
             targetPosition = -minimumCollisionOffset;
         }
-        Debug.Log("--------------"+ targetPosition);
         cameraTransformPosition.z = Mathf.Lerp(cameraTransform.localPosition.z, targetPosition, delta / 0.2f);
         cameraTransform.localPosition = cameraTransformPosition;
 

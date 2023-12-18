@@ -10,6 +10,9 @@ public class InputHandler : MonoBehaviour
     public float mouseX;
     public float mouseY;
 
+    public bool b_Input;
+    public bool rollFlag;
+
     PlayerControls inputActions;
     CameraHander cameraHander;
 
@@ -18,8 +21,8 @@ public class InputHandler : MonoBehaviour
 
     private void Awake()
     {
-        cameraHander = CameraHander.singleton;
-        //cameraHander = FindObjectOfType<CameraHander>();
+        //cameraHander = CameraHander.singleton;
+        cameraHander = FindObjectOfType<CameraHander>();
     }
 
     private void FixedUpdate()
@@ -40,6 +43,11 @@ public class InputHandler : MonoBehaviour
             inputActions = new PlayerControls();
             inputActions.PlayerMovement.MovementAction.performed += outputActions => movementInput = outputActions.ReadValue<Vector2>();
             inputActions.PlayerMovement.Camera.performed += outputActions => cameraInput = outputActions.ReadValue<Vector2>();
+
+            //xiaorenping自增
+            #region 
+            inputActions.PlayerActions.Roll.started += outputActions => rollFlag = true;
+            #endregion
         }
         inputActions.Enable();
     }
@@ -52,6 +60,7 @@ public class InputHandler : MonoBehaviour
     public void TickInput(float delta)
     {
         MoveInput(delta);
+        HandleRollInput(delta);
     }
 
     public void MoveInput(float delta)
@@ -62,5 +71,15 @@ public class InputHandler : MonoBehaviour
 
         mouseX = cameraInput.x;
         mouseY = cameraInput.y;
+    }
+
+    private void HandleRollInput(float delta)
+    {
+        b_Input = inputActions.PlayerActions.Roll.phase == UnityEngine.InputSystem.InputActionPhase.Started;
+
+        if (b_Input)
+        {
+            rollFlag = true;
+        }
     }
 }
