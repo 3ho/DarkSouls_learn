@@ -105,6 +105,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "RB",
+                    "type": "Button",
+                    "id": "1b11711b-a3cd-470e-85d9-d823206d9a21",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "RT",
+                    "type": "Button",
+                    "id": "ccf185fb-659f-46bb-8b39-8e17ac9acf40",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -116,6 +134,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Roll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9a640cd8-4158-4952-8df1-2be172b88c6a",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RB",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c21ab521-50a6-4ba8-9682-78d071b51160",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RT",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
