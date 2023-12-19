@@ -9,8 +9,11 @@ public class PlayerManager : MonoBehaviour
     CameraHander cameraHander;
     PlayerLocomotion playerLocomotion;
 
+    [Header("Player Flag")]
     public bool isInteracting;
     public bool isSprinting;
+    public bool isInAir;
+    public bool isGrounded;
 
     private void Awake()
     {
@@ -36,6 +39,7 @@ public class PlayerManager : MonoBehaviour
         inputHandler.TickInput(delta);
         playerLocomotion.HandleMovement(delta);
         playerLocomotion.HandleRollingAndSprinting(delta);
+        playerLocomotion.HandleFalling(delta, playerLocomotion.moveDirection);
     }
 
     private void FixedUpdate()
@@ -53,5 +57,10 @@ public class PlayerManager : MonoBehaviour
     {
         inputHandler.rollFlag = false;
         inputHandler.sprintFlag = false;
+
+        if(isInAir)
+        {
+            playerLocomotion.inAirTimer = playerLocomotion.inAirTimer + Time.deltaTime;
+        }
     }
 }
