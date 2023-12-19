@@ -92,7 +92,7 @@ public class PlayerLocomotion : MonoBehaviour
         moveDirection.y = 0;
 
         float speed = movementSpeed;
-        if (inputHandler.sprintFlag)
+        if (inputHandler.sprintFlag && inputHandler.moveAmount > 0.5f)
         {
             speed = sprintSpeed;
             playerManager.isSprinting = true;
