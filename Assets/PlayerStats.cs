@@ -10,6 +10,13 @@ public class PlayerStats : MonoBehaviour
 
     public HealthBar healthBar;
 
+    AnimatorHandler animatorHandler;
+
+    private void Awake()
+    {
+        animatorHandler = GetComponentInChildren<AnimatorHandler>();
+    }
+
     private void Start()
     {
         maxHealth = SetMaxHealthFromHealthLevel();
@@ -27,5 +34,13 @@ public class PlayerStats : MonoBehaviour
     {
         currentHealth = currentHealth - damage;
         healthBar.SetCurrentHealth(currentHealth);
+
+        animatorHandler.PlayTargetAnimation("Damage_01", true);
+
+        if(currentHealth <=0)
+        {
+            currentHealth = 0;
+            animatorHandler.PlayTargetAnimation("Dead_01", true);
+        }
     }
 }
