@@ -160,6 +160,94 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Player quick Slots",
+            "id": "639009a5-aa97-4ab7-8eea-6b44ffeda35a",
+            "actions": [
+                {
+                    "name": "D-Pad Up",
+                    "type": "Button",
+                    "id": "62c261e9-9424-41e6-ba8e-b4c56713854d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "D-Pad Down",
+                    "type": "Button",
+                    "id": "b89a854d-efed-4761-960b-f17839b036cd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "D-Pad Left",
+                    "type": "Button",
+                    "id": "87601d0e-109d-4a9c-972f-426ff02e21bf",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "D-Pad Right",
+                    "type": "Button",
+                    "id": "29e1c7e8-da62-483f-ae43-936cc0d249d8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "ea88a330-1cda-4a42-bba2-318b9c224828",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "D-Pad Up",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7e1bc13d-1ad6-4af3-bd58-544660eb0baf",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "D-Pad Down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3175c8ec-f281-4a2f-95d7-9765ce8eae4d",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "D-Pad Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9fe69307-3e5e-48a1-b72e-beefb734375f",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "D-Pad Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

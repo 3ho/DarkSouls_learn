@@ -7146,6 +7146,10 @@ MonoBehaviour:
   b_Input: 0
   rb_Input: 0
   rt_Input: 0
+  d_Pad_Up: 0
+  d_Pad_Down: 0
+  d_Pad_Left: 0
+  d_Pad_Right: 0
   rollFlag: 0
   sprintFlag: 0
   comboFlag: 0
@@ -7253,11 +7257,13 @@ MonoBehaviour:
   leftWeapon: {fileID: 11400000, guid: 3ad9e10cf63e0fa48b8221834d958cd9, type: 2}
   unarmedWeapon: {fileID: 11400000, guid: 15529079429b00844bf80fc5b79e7c8f, type: 2}
   weaponInRightHandSlots:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 3ad9e10cf63e0fa48b8221834d958cd9, type: 2}
+  - {fileID: 11400000, guid: 15529079429b00844bf80fc5b79e7c8f, type: 2}
   weaponInLeftHandSlots:
-  - {fileID: 0}
-  currentRightWeaponIndex: 0
-  currentLeftWeaponIndex: 0
+  - {fileID: 11400000, guid: 3ad9e10cf63e0fa48b8221834d958cd9, type: 2}
+  - {fileID: 11400000, guid: 3ad9e10cf63e0fa48b8221834d958cd9, type: 2}
+  currentRightWeaponIndex: -1
+  currentLeftWeaponIndex: -1
 --- !u!114 &225341072
 MonoBehaviour:
   m_ObjectHideFlags: 0
