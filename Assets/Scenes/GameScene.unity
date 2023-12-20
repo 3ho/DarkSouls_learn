@@ -7218,7 +7218,7 @@ Transform:
   m_Children:
   - {fileID: 1042631382}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &225341070
 MonoBehaviour:
@@ -7251,6 +7251,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightWeapon: {fileID: 11400000, guid: 3ad9e10cf63e0fa48b8221834d958cd9, type: 2}
   leftWeapon: {fileID: 11400000, guid: 3ad9e10cf63e0fa48b8221834d958cd9, type: 2}
+  unarmedWeapon: {fileID: 11400000, guid: 15529079429b00844bf80fc5b79e7c8f, type: 2}
+  weaponInRightHandSlots:
+  - {fileID: 0}
+  weaponInLeftHandSlots:
+  - {fileID: 0}
+  currentRightWeaponIndex: 0
+  currentLeftWeaponIndex: 0
 --- !u!114 &225341072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7659,7 +7666,7 @@ Transform:
   m_Children:
   - {fileID: 562790070}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &239838106
 PrefabInstance:
@@ -20316,7 +20323,7 @@ Transform:
   m_Children:
   - {fileID: 448720954}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &688580992
 MonoBehaviour:
@@ -40444,7 +40451,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1536355954
 PrefabInstance:
@@ -49564,7 +49571,7 @@ RectTransform:
   m_Children:
   - {fileID: 949290516}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
