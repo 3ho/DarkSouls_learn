@@ -12,9 +12,12 @@ public class WeaponSlotManager : MonoBehaviour
 
     Animator animator;
 
+    QuickSlotsUI quickSlotsUI;
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        quickSlotsUI = FindObjectOfType<QuickSlotsUI>();
 
         WeaponHodlerSlot[] weaponHodlerSlots = GetComponentsInChildren<WeaponHodlerSlot>();
         foreach (WeaponHodlerSlot weaponSlot in weaponHodlerSlots)
@@ -36,8 +39,8 @@ public class WeaponSlotManager : MonoBehaviour
         {
             leftHandSlot.LoadWeaponModel(weaponItem);
             LoadLeftWeaponDamageCollider();
-
-            if(weaponItem != null)
+            quickSlotsUI.UpdateWeaponQuickSlotsUI(true, weaponItem);
+            if (weaponItem != null)
             {
                 animator.CrossFade(weaponItem.left_hand_idle, 0.2f);
             }
@@ -50,7 +53,7 @@ public class WeaponSlotManager : MonoBehaviour
         {
             rightHandSlot.LoadWeaponModel(weaponItem);
             LoadRightWeaponDamageCollider();
-
+            quickSlotsUI.UpdateWeaponQuickSlotsUI(false, weaponItem);
             if (weaponItem != null)
             {
                 animator.CrossFade(weaponItem.right_hand_idle, 0.2f);
