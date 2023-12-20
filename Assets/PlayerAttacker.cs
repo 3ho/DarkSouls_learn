@@ -5,12 +5,15 @@ using UnityEngine;
 public class PlayerAttacker : MonoBehaviour
 {
     AnimatorHandler animatorHandler;
+    WeaponSlotManager weaponSlotManager;
     InputHandler inputHandler;
+
     private string lastAttack;
 
     private void Awake()
     {
         animatorHandler = GetComponentInChildren<AnimatorHandler>();
+        weaponSlotManager = GetComponentInChildren<WeaponSlotManager>();
         inputHandler = GetComponent<InputHandler>();
     }
 
@@ -29,12 +32,14 @@ public class PlayerAttacker : MonoBehaviour
 
     public void HandleLightAttack(WeaponItem weapon)
     {
+        weaponSlotManager.attackingWeapon = weapon;
         animatorHandler.PlayTargetAnimation(weapon.OH_Light_Attack_01, true);
         lastAttack = weapon.OH_Light_Attack_01;
     }
 
     public void HandleHeavyAttack(WeaponItem weapon)
     {
+        weaponSlotManager.attackingWeapon = weapon;
         animatorHandler.PlayTargetAnimation(weapon.OH_Heavy_Attack_01, true);
         lastAttack = weapon.OH_Heavy_Attack_01;
     }
