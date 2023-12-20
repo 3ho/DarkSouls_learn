@@ -7258,10 +7258,10 @@ MonoBehaviour:
   unarmedWeapon: {fileID: 11400000, guid: 15529079429b00844bf80fc5b79e7c8f, type: 2}
   weaponInRightHandSlots:
   - {fileID: 11400000, guid: 3ad9e10cf63e0fa48b8221834d958cd9, type: 2}
-  - {fileID: 11400000, guid: 15529079429b00844bf80fc5b79e7c8f, type: 2}
+  - {fileID: 11400000, guid: d460a7ee167fc634fa9bb9ceb76f8eea, type: 2}
   weaponInLeftHandSlots:
   - {fileID: 11400000, guid: 3ad9e10cf63e0fa48b8221834d958cd9, type: 2}
-  - {fileID: 11400000, guid: 3ad9e10cf63e0fa48b8221834d958cd9, type: 2}
+  - {fileID: 11400000, guid: d460a7ee167fc634fa9bb9ceb76f8eea, type: 2}
   currentRightWeaponIndex: -1
   currentLeftWeaponIndex: -1
 --- !u!114 &225341072
