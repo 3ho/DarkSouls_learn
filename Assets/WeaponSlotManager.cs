@@ -18,12 +18,10 @@ public class WeaponSlotManager : MonoBehaviour
             if (weaponSlot.isLeftHandSlot)
             {
                 leftHandSlot = weaponSlot;
-                LoadLeftWeaponDamageCollider();
             }
             else if (weaponSlot.isRightHandSlot)
             {
                 rightHandSlot = weaponSlot;
-                LoadRightWeaponDamageCollider();
             }
         }
     }
@@ -33,10 +31,12 @@ public class WeaponSlotManager : MonoBehaviour
         if (isLeft)
         {
             leftHandSlot.LoadWeaponModel(weaponItem);
+            LoadLeftWeaponDamageCollider();
         }
         else
         {
             rightHandSlot.LoadWeaponModel(weaponItem);
+            LoadRightWeaponDamageCollider();
         }
     }
 
