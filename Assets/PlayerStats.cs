@@ -13,11 +13,14 @@ public class PlayerStats : MonoBehaviour
     public int currentStamina;
 
     public HealthBar healthBar;
+    public StaminaBar staminaBar;
 
     AnimatorHandler animatorHandler;
 
     private void Awake()
     {
+        healthBar = FindObjectOfType<HealthBar>();
+        staminaBar = FindObjectOfType<StaminaBar>();
         animatorHandler = GetComponentInChildren<AnimatorHandler>();
     }
 
@@ -29,6 +32,7 @@ public class PlayerStats : MonoBehaviour
 
         maxStamina = SetMaxStaminaFromStaminaLevel();
         currentStamina = maxStamina;
+        staminaBar.SetMaxStamina(maxStamina);
     }
 
     private int SetMaxHealthFromHealthLevel()
@@ -60,5 +64,6 @@ public class PlayerStats : MonoBehaviour
     public void TakeStaminaDamage(int damage)
     {
         currentStamina = currentStamina - damage;
+        staminaBar.SetCurrentStamina(currentStamina);
     }
 }
