@@ -9,6 +9,8 @@ public class WeaponPickUp : Interactable
     public override void Interact(PlayerManager playerManager)
     {
         base.Interact(playerManager);
+
+        PickUpItem(playerManager);
     }
 
     private void PickUpItem(PlayerManager playerManager)
@@ -19,10 +21,11 @@ public class WeaponPickUp : Interactable
 
         playerInventory = playerManager.GetComponent<PlayerInventory>();
         playerLocomotion = playerManager.GetComponent<PlayerLocomotion>();
-        animatorHandler = playerManager.GetComponent<AnimatorHandler>();
+        animatorHandler = playerManager.GetComponentInChildren<AnimatorHandler>();
 
         playerLocomotion.rigidbody.velocity = Vector3.zero;
         animatorHandler.PlayTargetAnimation("Pick Up Item", true);
         playerInventory.weaponsInventory.Add(weapon);
+        Destroy(gameObject);
     }
 }

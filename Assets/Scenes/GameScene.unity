@@ -7293,6 +7293,7 @@ MonoBehaviour:
   mouseX: 0
   mouseY: 0
   b_Input: 0
+  a_Input: 0
   rb_Input: 0
   rt_Input: 0
   d_Pad_Up: 0
@@ -14597,7 +14598,7 @@ GameObject:
   - component: {fileID: 431181223}
   m_Layer: 0
   m_Name: Item
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15092,6 +15093,9 @@ MonoBehaviour:
   targetTransform: {fileID: 225341069}
   cameraTransform: {fileID: 1598060824}
   cameraPivotTransform: {fileID: 1226801256}
+  ignoreLayers:
+    serializedVersion: 2
+    m_Bits: 0
   lookSpeed: 0.1
   followSpeed: 0.1
   pivotSpeed: 0.03
