@@ -7519,6 +7519,7 @@ MonoBehaviour:
   rb_Input: 0
   rt_Input: 0
   jump_Input: 0
+  inventory_Input: 0
   d_Pad_Up: 0
   d_Pad_Down: 0
   d_Pad_Left: 0
@@ -7526,6 +7527,7 @@ MonoBehaviour:
   rollFlag: 0
   sprintFlag: 0
   comboFlag: 0
+  inventoryFlag: 0
   rollInputTimer: 0
 --- !u!114 &225341066
 MonoBehaviour:
@@ -51503,6 +51505,7 @@ GameObject:
   - component: {fileID: 1912820147}
   - component: {fileID: 1912820146}
   - component: {fileID: 1912820145}
+  - component: {fileID: 1912820149}
   m_Layer: 5
   m_Name: Player UI
   m_TagString: Untagged
@@ -51591,6 +51594,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1912820149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1912820144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6523639d7095924c9333881379975a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectWindow: {fileID: 1728048250}
 --- !u!1 &1913102624
 GameObject:
   m_ObjectHideFlags: 0
