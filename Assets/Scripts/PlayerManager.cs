@@ -10,6 +10,7 @@ public class PlayerManager : MonoBehaviour
     PlayerLocomotion playerLocomotion;
     InteractableUI interactableUI;
     public GameObject interactableUIGameObject;
+    public GameObject itemInteractableGameObject;
 
     [Header("Player Flag")]
     public bool isInteracting;
@@ -106,6 +107,11 @@ public class PlayerManager : MonoBehaviour
             if(interactableUIGameObject != null)
             {
                 interactableUIGameObject.SetActive(false);
+            }
+
+            if(itemInteractableGameObject != null && inputHandler.a_Input)
+            {
+                itemInteractableGameObject.SetActive(false);
             }
         }
     }
