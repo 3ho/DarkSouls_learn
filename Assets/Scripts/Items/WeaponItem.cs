@@ -18,6 +18,8 @@ public class WeaponItem : Item
     public string OH_Light_Attack_01;
     public string OH_Light_Attack_02;
     public string OH_Heavy_Attack_01;
+    public string th_Light_Attack_01;
+    public string th_Light_Attack_02;
 
     [Header("Stamina Costs")]
     public int baseStamina;
