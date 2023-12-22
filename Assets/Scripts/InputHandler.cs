@@ -16,6 +16,7 @@ public class InputHandler : MonoBehaviour
     public bool rt_Input;
     public bool jump_Input;
     public bool inventory_Input;
+    public bool lockOn_Input;
 
 
     public bool d_Pad_Up;
@@ -26,10 +27,12 @@ public class InputHandler : MonoBehaviour
     public bool rollFlag;
     public bool sprintFlag;
     public bool comboFlag;
+    public bool lockOnFlag;
     public bool inventoryFlag;
     public float rollInputTimer;
 
     PlayerControls inputActions;
+    CameraHander cameraHander;
     PlayerAttacker playerAttacker;
     PlayerInventory playerInventory;
     PlayerManager playerManager;
@@ -45,6 +48,7 @@ public class InputHandler : MonoBehaviour
         playerInventory = GetComponent<PlayerInventory>();
         playerManager = GetComponent<PlayerManager>();
         uiManager = FindObjectOfType<UIManager>();
+        cameraHander = FindObjectOfType<CameraHander>();
     }
 
 
@@ -73,6 +77,7 @@ public class InputHandler : MonoBehaviour
         HandleInteractingButtonInput();
         HandleJumpInput();
         HandleInventoryInput();
+        HandleLockOnInput();
     }
 
     public void MoveInput(float delta)
@@ -183,5 +188,27 @@ public class InputHandler : MonoBehaviour
             }
         }
     }
-    
+
+    private void HandleLockOnInput()
+    {
+        inputActions.PlayerActions.LockOn.performed += i => lockOn_Input = true;
+
+        if(lockOn_Input && lockOnFlag==false)
+        {
+            cameraHander.ClearLockOnTargets();
+            lockOn_Input = false;
+            cameraHander.HandleLockOn();
+
+            if(cameraHander.nearestLockOnTarget != null)
+            {
+                lockOnFlag = true;
+                cameraHander.currentLockOnTarget = cameraHander.nearestLockOnTarget;
+            }
+        }else if(lockOn_Input && lockOnFlag)
+        {
+            lockOn_Input = false;
+            lockOnFlag = false;
+            cameraHander.ClearLockOnTargets();
+        }
+    }
 }

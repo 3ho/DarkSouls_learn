@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CameraHander : MonoBehaviour
 {
+    InputHandler inputHandler;
+
     public Transform targetTransform;
     public Transform cameraTransform;
     public Transform cameraPivotTransform;
@@ -28,6 +30,8 @@ public class CameraHander : MonoBehaviour
     public float cameraCollisionOffset = 0.2f;
     public float minimumCollisionOffset = 0.5f;
 
+    public Transform currentLockOnTarget;
+
     List<CharacterManager> avilableTargets = new List<CharacterManager>();
     public Transform nearestLockOnTarget;
     public float maxmumLockOnDistance = 30;
@@ -40,6 +44,7 @@ public class CameraHander : MonoBehaviour
         ignoreLayers = ~2;
 
         targetTransform = FindObjectOfType<PlayerLocomotion>().transform;
+        inputHandler = FindObjectOfType<InputHandler>();
     }
 
     public void FollowTarget(float delta)
@@ -52,20 +57,43 @@ public class CameraHander : MonoBehaviour
 
     public void HandCameraRotation(float delta, float mouseXInput, float mouseYInput)
     {
-        lookAngle += (mouseXInput * lookSpeed) / delta;
-        pivotAngle -= (mouseYInput * pivotSpeed) / delta;
-        pivotAngle = Mathf.Clamp(pivotAngle, minimumPivot, maximumPivot);
+        if(inputHandler.lockOnFlag == false && currentLockOnTarget == null)
+        {
+            lookAngle += (mouseXInput * lookSpeed) / delta;
+            pivotAngle -= (mouseYInput * pivotSpeed) / delta;
+            pivotAngle = Mathf.Clamp(pivotAngle, minimumPivot, maximumPivot);
 
-        Vector3 rotation = Vector3.zero;
-        rotation.y = lookAngle;
-        Quaternion targetRotation = Quaternion.Euler(rotation);
-        myTransform.rotation = targetRotation;
+            Vector3 rotation = Vector3.zero;
+            rotation.y = lookAngle;
+            Quaternion targetRotation = Quaternion.Euler(rotation);
+            myTransform.rotation = targetRotation;
 
-        rotation = Vector3.zero;
-        rotation.x = pivotAngle;
+            rotation = Vector3.zero;
+            rotation.x = pivotAngle;
 
-        targetRotation = Quaternion.Euler(rotation);
-        cameraPivotTransform.localRotation = targetRotation;
+            targetRotation = Quaternion.Euler(rotation);
+            cameraPivotTransform.localRotation = targetRotation;
+        }
+        else
+        {
+            float velocity = 0;
+
+            Vector3 dir = currentLockOnTarget.position - transform.position;
+            dir.Normalize();
+            dir.y = 0;
+
+            Quaternion targetRotation = Quaternion.LookRotation(dir);
+            transform.rotation = targetRotation;
+
+            dir = currentLockOnTarget.position - cameraPivotTransform.position;
+            dir.Normalize();
+
+            targetRotation = Quaternion.LookRotation(dir);
+            Vector3 eulerAngle = targetRotation.eulerAngles;
+            eulerAngle.y = 0;
+            cameraPivotTransform.localEulerAngles = eulerAngle;
+        }
+        
     }
 
     private void HandleCameraConllisions(float delta)
@@ -126,5 +154,12 @@ public class CameraHander : MonoBehaviour
             }
 
         }
+    }
+
+    public void ClearLockOnTargets()
+    {
+        avilableTargets.Clear();
+        nearestLockOnTarget = null;
+        currentLockOnTarget = null;
     }
 }
