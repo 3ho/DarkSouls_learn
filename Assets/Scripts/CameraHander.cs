@@ -28,6 +28,9 @@ public class CameraHander : MonoBehaviour
     public float cameraCollisionOffset = 0.2f;
     public float minimumCollisionOffset = 0.5f;
 
+    List<CharacterManager> avilableTargets = new List<CharacterManager>();
+    public Transform nearestLockOnTarget;
+    public float maxmumLockOnDistance = 30;
 
     private void Awake()
     {
@@ -85,5 +88,43 @@ public class CameraHander : MonoBehaviour
         cameraTransform.localPosition = cameraTransformPosition;
 
 
+    }
+
+    public void HandleLockOn()
+    {
+        float shortestDistance = Mathf.Infinity;
+
+        Collider[] colliders = Physics.OverlapSphere(targetTransform.position, 26);
+
+        for(int i=0;i<colliders.Length;i++)
+        {
+            CharacterManager character = colliders[i].GetComponent<CharacterManager>();
+
+            if(character != null)
+            {
+                Vector3 lockTargetDirection = character.transform.position - targetTransform.position;
+                float distanceFormTarget = Vector3.Distance(targetTransform.position, character.transform.position);
+                float viewableAngle = Vector3.Angle(lockTargetDirection, cameraTransform.forward); 
+
+                if(character.transform.root != targetTransform.transform.root 
+                    && viewableAngle > -50 && viewableAngle < 50
+                    && distanceFormTarget <= maxmumLockOnDistance)
+                {
+                    avilableTargets.Add(character);
+                }
+            }
+        }
+
+        for(int k=0;k< avilableTargets.Count;k++)
+        {
+            float distanceFromTarget = Vector3.Distance(targetTransform.position, avilableTargets[k].transform.position);
+
+            if(distanceFromTarget < shortestDistance)
+            {
+                shortestDistance = distanceFromTarget;
+                nearestLockOnTarget = avilableTargets[k].transform;
+            }
+
+        }
     }
 }
