@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class WeaponSlotManager : MonoBehaviour
 {
+    public WeaponItem attackingWeapon;
+
     WeaponHodlerSlot leftHandSlot;
     WeaponHodlerSlot rightHandSlot;
+    WeaponHodlerSlot backSlot;
 
     DamageCollider leftHandDamageCollider;
     DamageCollider rightHandDamageCollider;
-
-    public WeaponItem attackingWeapon;
 
     Animator animator;
 
@@ -36,6 +37,9 @@ public class WeaponSlotManager : MonoBehaviour
             else if (weaponSlot.isRightHandSlot)
             {
                 rightHandSlot = weaponSlot;
+            }else if(weaponSlot.isBackSlot)
+            {
+                backSlot = weaponSlot;
             }
         }
     }
@@ -44,6 +48,7 @@ public class WeaponSlotManager : MonoBehaviour
     {
         if (isLeft)
         {
+            leftHandSlot.currentWeapon = weaponItem;
             leftHandSlot.LoadWeaponModel(weaponItem);
             LoadLeftWeaponDamageCollider();
             quickSlotsUI.UpdateWeaponQuickSlotsUI(true, weaponItem);
@@ -60,11 +65,14 @@ public class WeaponSlotManager : MonoBehaviour
         {
             if(inputHandler.twoHandFlag)
             {
+                backSlot.LoadWeaponModel(leftHandSlot.currentWeapon);
+                leftHandSlot.UnloadWeaponAndDestroy();
                 animator.CrossFade(weaponItem.th_idle,0.2f);
             }
             else
             {
                 animator.CrossFade("Both Arms Empty", 0.2f);
+                backSlot.UnloadWeaponAndDestroy();
                 if (weaponItem != null)
                 {
                     animator.CrossFade(weaponItem.right_hand_idle, 0.2f);
@@ -73,7 +81,7 @@ public class WeaponSlotManager : MonoBehaviour
                 {
                     animator.CrossFade("Right Arm Empty", 0.2f);
                 }
-
+                rightHandSlot.currentWeapon = weaponItem;
                 rightHandSlot.LoadWeaponModel(weaponItem);
                 LoadRightWeaponDamageCollider();
                 quickSlotsUI.UpdateWeaponQuickSlotsUI(false, weaponItem);
