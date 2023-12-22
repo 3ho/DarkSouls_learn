@@ -5,7 +5,7 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     public PlayerInventory playerInventory;
-    EquipmentWindowUI equipmentWindowUI;
+    public EquipmentWindowUI equipmentWindowUI;
 
     [Header("UI Windows")]
     public GameObject hudWindow;
@@ -19,7 +19,7 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        equipmentWindowUI = FindObjectOfType<EquipmentWindowUI>();
+        //equipmentWindowUI = FindObjectOfType<EquipmentWindowUI>();
     }
 
     private void Start()
