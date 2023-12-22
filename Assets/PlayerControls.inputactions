@@ -147,6 +147,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "LockOn",
+                    "type": "Button",
+                    "id": "ad3e07f2-f794-4368-afde-b227bc4e3263",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Roll",
                     "type": "Button",
                     "id": "18d3bd20-3c08-4e21-94d9-abe0db7d2d98",
@@ -192,9 +201,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "LockOn",
+                    "name": "Y",
                     "type": "Button",
-                    "id": "ad3e07f2-f794-4368-afde-b227bc4e3263",
+                    "id": "87d01f11-9f8d-46f5-836b-a0d3e5e50e0f",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -276,6 +285,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "LockOn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1491bab4-7157-4100-bbc2-fe5b5998ce2a",
+                    "path": "<Keyboard>/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Y",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
