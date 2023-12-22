@@ -17,7 +17,8 @@ public class InputHandler : MonoBehaviour
     public bool jump_Input;
     public bool inventory_Input;
     public bool lockOn_Input;
-
+    public bool right_Stick_Right_Input;
+    public bool right_Stick_Left_Input;
 
     public bool d_Pad_Up;
     public bool d_Pad_Down;
@@ -59,6 +60,8 @@ public class InputHandler : MonoBehaviour
             inputActions = new PlayerControls();
             inputActions.PlayerMovement.MovementAction.performed += outputActions => movementInput = outputActions.ReadValue<Vector2>();
             inputActions.PlayerMovement.Camera.performed += outputActions => cameraInput = outputActions.ReadValue<Vector2>();
+            inputActions.PlayerMovement.LockOnTargetRight.performed += i => right_Stick_Right_Input = true;
+            inputActions.PlayerMovement.LockOnTargetLeft.performed += i => right_Stick_Left_Input = true;
         }
         inputActions.Enable();
     }
@@ -195,7 +198,6 @@ public class InputHandler : MonoBehaviour
 
         if(lockOn_Input && lockOnFlag==false)
         {
-            cameraHander.ClearLockOnTargets();
             lockOn_Input = false;
             cameraHander.HandleLockOn();
 
@@ -209,6 +211,25 @@ public class InputHandler : MonoBehaviour
             lockOn_Input = false;
             lockOnFlag = false;
             cameraHander.ClearLockOnTargets();
+        }
+
+        if(lockOnFlag && right_Stick_Left_Input)
+        {
+            right_Stick_Left_Input = false;
+            cameraHander.HandleLockOn();
+            if(cameraHander.leftLockTarget != null)
+            {
+                cameraHander.currentLockOnTarget = cameraHander.leftLockTarget;
+            }
+        }
+        if (lockOnFlag && right_Stick_Right_Input)
+        {
+            right_Stick_Right_Input = false;
+            cameraHander.HandleLockOn();
+            if (cameraHander.rightLockTarget != null)
+            {
+                cameraHander.currentLockOnTarget = cameraHander.rightLockTarget;
+            }
         }
     }
 }
