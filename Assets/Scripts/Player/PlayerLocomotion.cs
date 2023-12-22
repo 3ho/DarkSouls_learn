@@ -86,6 +86,9 @@ public class PlayerLocomotion : MonoBehaviour
 
     public void HandleMovement(float delta)
     {
+        if (playerManager.isInteracting)
+            return;
+
         moveDirection = cameraObject.forward * inputHandler.vertical;
         moveDirection += cameraObject.right * inputHandler.horizontal;
         moveDirection.Normalize();
@@ -140,6 +143,9 @@ public class PlayerLocomotion : MonoBehaviour
 
     public void HandleFalling(float delta, Vector3 moveDirection)
     {
+        if (playerManager.isInteracting)
+            return;
+
         playerManager.isGrounded = false;
         RaycastHit hit;
         Vector3 orgin = myTransform.position;
