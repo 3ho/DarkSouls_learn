@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyManager : CharacterManager
 {
     EnemyLocomotionManager enemyLocomotionManager;
-    bool isPrefromingAction;
+    public bool isPrefromingAction;
 
     [Header("A.I Setting")]
     public float detectionRadius = 20;

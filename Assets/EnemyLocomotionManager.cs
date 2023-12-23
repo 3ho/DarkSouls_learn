@@ -1,17 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyLocomotionManager : MonoBehaviour
 {
     EnemyManager enemyManager;
+    EnemyAnimatorManager enemyAnimatorManager;
+    NavMeshAgent navMeshAgent;
 
     public CharacterStats currectTarget;
     public LayerMask detetionLayer;
 
+    public float distaceFromTarget;
+    public float stoppingDistance = 0.5f;
+
     private void Awake()
     {
         enemyManager = GetComponent<EnemyManager>();
+        enemyAnimatorManager = GetComponentInChildren<EnemyAnimatorManager>();
+        navMeshAgent = GetComponentInChildren<NavMeshAgent>();
     }
 
     public void HandleDetetion()
@@ -31,6 +39,26 @@ public class EnemyLocomotionManager : MonoBehaviour
                 {
                     currectTarget = characterStats;
                 }
+            }
+        }
+    }
+
+    public void HandleMoveToTarget()
+    {
+        Vector3 targetDirection = currectTarget.transform.position - transform.position;
+        distaceFromTarget = Vector3.Distance(currectTarget.transform.position, transform.position);
+        float viewableAngle = Vector3.Angle(targetDirection, transform.forward);
+
+        if(enemyManager.isPrefromingAction)
+        {
+            enemyAnimatorManager.anim.SetFloat("Vertical", 0, 0.1f, Time.deltaTime);
+            navMeshAgent.enabled = false;
+        }
+        else
+        {
+            if(distaceFromTarget > stoppingDistance)
+            {
+                enemyAnimatorManager.anim.SetFloat("Vertical", 1, 0.1f, Time.deltaTime);
             }
         }
     }
