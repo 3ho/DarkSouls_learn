@@ -17,6 +17,8 @@ public class EnemyManager : CharacterManager
     public float minimumDetectionAngle = -50;
     public float maxmumDetectionAngle = 50;
 
+    public float currentRecoveryTime = 0;
+
     private void Awake()
     {
         enemyLocomotionManager = GetComponent<EnemyLocomotionManager>();
@@ -25,7 +27,7 @@ public class EnemyManager : CharacterManager
 
     private void Update()
     {
-        
+        HandleRecoveryTime();
     }
 
     private void FixedUpdate()
@@ -35,6 +37,11 @@ public class EnemyManager : CharacterManager
 
     private void HandleCurrectAction()
     {
+        if(enemyLocomotionManager.currectTarget != null)
+        {
+            enemyLocomotionManager.distaceFromTarget = Vector3.Distance(enemyLocomotionManager.currectTarget.transform.position, transform.position);
+        }
+
         if(enemyLocomotionManager.currectTarget == null)
         {
             enemyLocomotionManager.HandleDetetion();
@@ -45,6 +52,23 @@ public class EnemyManager : CharacterManager
         }else if(enemyLocomotionManager.distaceFromTarget <= enemyLocomotionManager.stoppingDistance)
         {
             //
+            AttackTarget();
+        }
+    }
+
+    private void HandleRecoveryTime()
+    {
+        if(currentRecoveryTime >=0)
+        {
+            currentRecoveryTime -= Time.deltaTime;
+        }
+
+        if(isPrefromingAction)
+        {
+            if(currentRecoveryTime <=0)
+            {
+                isPrefromingAction = false;
+            }
         }
     }
 
@@ -60,7 +84,9 @@ public class EnemyManager : CharacterManager
         else
         {
             isPrefromingAction = true;
+            currentRecoveryTime = currentAttack.recoveryTime;
             enemyAnimatorManager.PlayTargetAnimation(currentAttack.actionAnimation, true);
+            currentAttack = null;
         }
     }
 

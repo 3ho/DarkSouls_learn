@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAction : MonoBehaviour
+public class EnemyAction : ScriptableObject
 {
     public string actionAnimation;
+
 }

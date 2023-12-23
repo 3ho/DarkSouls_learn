@@ -81,6 +81,9 @@ public class EnemyLocomotionManager : MonoBehaviour
 
     private void HandleRotateTowardsTarget()
     {
+        if (enemyManager.isPrefromingAction)
+            return;
+
         if(enemyManager.isPrefromingAction)
         {
             Vector3 direction = currectTarget.transform.position - transform.position;
