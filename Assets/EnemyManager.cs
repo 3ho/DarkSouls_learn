@@ -19,6 +19,11 @@ public class EnemyManager : CharacterManager
 
     private void Update()
     {
+        
+    }
+
+    private void FixedUpdate()
+    {
         HandleCurrectAction();
     }
 
@@ -27,6 +32,10 @@ public class EnemyManager : CharacterManager
         if(enemyLocomotionManager.currectTarget == null)
         {
             enemyLocomotionManager.HandleDetetion();
+        }
+        else
+        {
+            enemyLocomotionManager.HandleMoveToTarget();
         }
     }
 }
