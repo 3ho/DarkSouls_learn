@@ -154,7 +154,7 @@ public class CameraHander : MonoBehaviour
             if(distanceFromTarget < shortestDistance)
             {
                 shortestDistance = distanceFromTarget;
-                nearestLockOnTarget = avilableTargets[k].transform;
+                nearestLockOnTarget = avilableTargets[k].lockOnTransform;
             }
 
             if(inputHandler.lockOnFlag)
@@ -166,12 +166,12 @@ public class CameraHander : MonoBehaviour
                 if(relativeEnemyPosition.x > 0 && distanceFromLeftTarget < shortestDistance_left)
                 {
                     shortestDistance_left = distanceFromLeftTarget;
-                    leftLockTarget = avilableTargets[k].transform;
+                    leftLockTarget = avilableTargets[k].lockOnTransform;
                 }
                 if (relativeEnemyPosition.x < 0 && distanceFromRightTarget < shortestDistance_right)
                 {
                     shortestDistance_right = distanceFromRightTarget;
-                    rightLockTarget = avilableTargets[k].transform;
+                    rightLockTarget = avilableTargets[k].lockOnTransform;
                 }
             }
         }
